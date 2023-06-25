@@ -42,7 +42,7 @@ def add_contact(newContact: dict[str: str]):
         newID = max(list(map(int, phonebook.keys()))) + 1
     else:
         newID = 1
-    phonebook.update({newID: newContact})
+    phonebook.update({str(newID): newContact})
     view.print_message(text.successAddContact(newContact['name']))
 
 
@@ -52,7 +52,6 @@ def remove_contact():
         view.print_contacts(removeDict)
         while True:
             removeContactID = view.get_ID(text.removeInput)
-            print(removeContactID, type(removeContactID))
             if  removeContactID in removeDict.keys():
                 contactToRemove = phonebook.pop(removeContactID)
                 view.print_message(text.successRemoveContact(contactToRemove['name']))
